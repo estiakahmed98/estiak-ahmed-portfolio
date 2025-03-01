@@ -10,19 +10,19 @@ export default function Education() {
 
   const educations = [
     {
-      degree: "BACHELOR DEGREE",
-      institution: "National University of Bangladesh",
-      period: "2020 - Present",
+      degree: "BSC in CSE",
+      institution: "Stamford University Bangladesh",
+      period: "2023",
     },
     {
       degree: "HIGHER SECONDARY CERTIFICATE",
-      institution: "Noakhali Islamia Kamil Madrasah",
-      period: "2018 - 2020",
+      institution: "Govt. Ashek Mahmud Collage Jamalpur",
+      period: "2017",
     },
     {
       degree: "SECONDARY SCHOOL CERTIFICATE",
-      institution: "Baitus Saif Islamia Madrasah",
-      period: "2008 - 2018",
+      institution: "Advocate Khalilur Rahman High School",
+      period: "2014",
     },
   ];
 
