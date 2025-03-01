@@ -34,31 +34,31 @@ export default function Home() {
       <div className="relative z-10">
         <Navbar scrollProgress={scrollProgress} />
 
-        <section id="home" className="min-h-screen">
+        <section id="home">
           <Hero />
         </section>
 
-        <section id="about" className="min-h-screen ">
+        <section id="about">
           <About />
         </section>
 
-        <section id="experience" className="min-h-screen ">
+        <section id="experience" className="mt-52">
           <Experience />
         </section>
 
-        <section id="skills" className="min-h-screen ">
+        <section id="skills" className="mt-52">
           <Skills />
         </section>
 
-        <section id="projects" className="min-h-screen ">
+        <section id="projects" className="mt-52">
           <Projects />
         </section>
 
-        <section id="education" className="min-h-screen pt-10">
+        <section id="education" className="mt-52">
           <Education />
         </section>
 
-        <section id="contact" className="min-h-screen ">
+        <section id="contact" className="mt-52">
           <Contact />
         </section>
 

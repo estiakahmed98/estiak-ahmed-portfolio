@@ -66,7 +66,7 @@ export default function About() {
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
             transition={{ duration: 0.5, delay: 0.4 }}
           >
-            <div className="relative w-64 h-64 mx-auto overflow-hidden rounded-lg border-4 border-[#00ffaa]/30">
+            <div className="relative w-64 h-auto mx-auto overflow-hidden rounded-lg border-4 border-[#00ffaa]/30">
               <Image
                 src="/assets/estiak.jpg"
                 alt="Estiak Ahmed"
@@ -79,9 +79,6 @@ export default function About() {
           </motion.div>
         </div>
       </div>
-
-      <div className="absolute -right-20 top-1/4 w-40 h-40 bg-[#ff00aa]/30 rounded-full blur-3xl"></div>
-      <div className="absolute -left-20 bottom-1/4 w-40 h-40 bg-[#00ffaa]/30 rounded-full blur-3xl"></div>
     </div>
   );
 }

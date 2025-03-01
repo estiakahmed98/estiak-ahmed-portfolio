@@ -103,12 +103,19 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.4 }}
         >
-          <Button className="bg-[#0a0a1f] border border-[#ff00aa] text-white hover:bg-[#ff00aa]/20">
-            CONTACT ME
-          </Button>
-          <Button className="bg-gradient-to-r from-[#ff00aa] to-[#00ffaa] text-white hover:opacity-90">
-            GET RESUME
-          </Button>
+          {/* Spotlight Card Wrapper for CONTACT ME Button */}
+          <div className="w-fit p-[2px] rounded-2xl border border-transparent [background:conic-gradient(from_var(--border-angle),theme(colors.slate.600/.48)_80%,theme(colors.indigo.500)_86%,theme(colors.indigo.300)_90%,theme(colors.indigo.500)_94%,theme(colors.slate.600/.48))_border-box] animate-border">
+            <Button className="bg-[#0a0a1f] border border-[#ff00aa] text-white hover:bg-[#ff00aa]/20 px-6 py-3 rounded-2xl">
+              CONTACT ME
+            </Button>
+          </div>
+
+          {/* Spotlight Card Wrapper for GET RESUME Button */}
+          <div className="w-fit p-[2px] rounded-2xl border border-transparent [background:conic-gradient(from_var(--border-angle),theme(colors.slate.600/.48)_80%,theme(colors.indigo.500)_86%,theme(colors.indigo.300)_90%,theme(colors.indigo.500)_94%,theme(colors.slate.600/.48))_border-box] animate-border">
+            <Button className="bg-gradient-to-r from-[#ff00aa] to-[#00ffaa] text-white hover:opacity-90 px-6 py-3 rounded-2xl">
+              GET RESUME
+            </Button>
+          </div>
         </motion.div>
       </div>
 
@@ -119,7 +126,7 @@ export default function Hero() {
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5, delay: 0.6 }}
       >
-        <div className="bg-[#0a0a1f]/50 backdrop-blur-sm border border-[#ffffff10] rounded-lg p-4 max-w-md mx-auto">
+        <div className="w-full p-8 max-w-[422px] mx-auto [background:linear-gradient(45deg,#080b11,theme(colors.slate.800)_50%,#172033)_padding-box,conic-gradient(from_var(--border-angle),theme(colors.slate.600/.48)_80%,_theme(colors.indigo.500)_86%,_theme(colors.indigo.300)_90%,_theme(colors.indigo.500)_94%,_theme(colors.slate.600/.48))_border-box] rounded-2xl border border-transparent animate-border">
           <div className="flex items-center gap-2 mb-4">
             <div className="w-3 h-3 rounded-full bg-red-500"></div>
             <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
