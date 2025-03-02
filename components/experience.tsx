@@ -1,39 +1,65 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { useRef, useEffect, useState } from "react";
+import { motion, useInView, AnimatePresence } from "framer-motion";
 import { Timeline } from "@/components/ui/timeline";
+import Image from "next/image";
+import { IconArrowLeft, IconArrowRight } from "@tabler/icons-react";
 
 export default function Experience() {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: false, amount: 0.3 });
 
+  // Work Experience Data
   const experiences = [
     {
       title: "Jr. Software Engineer",
       company: "Birds Of Eden",
       period: "June 2024 - Present",
       description:
-        "Working on design with figma, developing and maintaining web applications using React, Next.js, and Node.js.",
+        "Working on design with Figma, developing and maintaining web applications using React, Next.js, and Node.js.",
     },
     {
-      title: "Intern Software Engineer ",
+      title: "Intern Software Engineer",
       company: "Birds Of Eden",
       period: "Jan 2024 - June 2024",
       description:
-        "Working on design with figma developing website using React, Next.js, and Node.js.",
+        "Working on design with Figma, developing websites using React, Next.js, and Node.js.",
     },
     {
       title: "Senior Executive SEO Support",
       company: "Aan-Nahl Software",
       period: "Mar 2022 - Jan 2024",
       description:
-        "Worked as Wordpress Developer, Web 2.0 Expart, Online Reputation Management (ORM) Expart & SEO Support",
+        "Worked as WordPress Developer, Web 2.0 Expert, Online Reputation Management (ORM) Expert & SEO Support.",
     },
   ];
 
+  // Animated Image Carousel Data
+  const testimonials = [
+    { src: "/assets/aannahl.png" },
+    { src: "/assets/boed.png" },
+    { src: "/assets/netrep.png" },
+  ];
+
+  const [active, setActive] = useState(0);
+
+  const handleNext = () => {
+    setActive((prev) => (prev + 1) % testimonials.length);
+  };
+
+  const handlePrev = () => {
+    setActive((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+  };
+
+  useEffect(() => {
+    const interval = setInterval(handleNext, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div className="container mx-auto px-4" ref={ref}>
+      {/* Section Title */}
       <motion.h2
         className="text-3xl md:text-4xl font-bold text-center mb-16 text-[#00ffaa]"
         initial={{ opacity: 0, y: 20 }}
@@ -43,64 +69,81 @@ export default function Experience() {
         Experiences
       </motion.h2>
 
+      {/* Grid Layout */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        {/* Left Section - Animated Image Carousel */}
         <motion.div
           initial={{ opacity: 0, x: -50 }}
           animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          <div className="relative w-full h-[400px]">
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64">
-              <div className="relative w-full h-full">
-                <div className="absolute inset-0 bg-gradient-to-r from-[#ff00aa]/20 to-[#00ffaa]/20 rounded-lg"></div>
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <svg
-                    width="240"
-                    height="240"
-                    viewBox="0 0 240 240"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
+          <div className="relative w-full h-[400px] flex flex-col items-center">
+            <div className="relative h-80 w-full bg-white rounded-3xl p-4">
+              <AnimatePresence>
+                {testimonials.map((testimonial, index) => (
+                  <motion.div
+                    key={testimonial.src}
+                    initial={{
+                      opacity: 0,
+                      scale: 0.9,
+                      z: -100,
+                      rotate: Math.floor(Math.random() * 21) - 10,
+                    }}
+                    animate={{
+                      opacity: index === active ? 1 : 0.7,
+                      scale: index === active ? 1 : 0.95,
+                      z: index === active ? 0 : -100,
+                      rotate:
+                        index === active
+                          ? 0
+                          : Math.floor(Math.random() * 21) - 10,
+                      zIndex:
+                        index === active
+                          ? 999
+                          : testimonials.length + 2 - index,
+                      y: index === active ? [0, -20, 0] : 0,
+                    }}
+                    exit={{
+                      opacity: 0,
+                      scale: 0.9,
+                      z: 100,
+                      rotate: Math.floor(Math.random() * 21) - 10,
+                    }}
+                    transition={{ duration: 0.4, ease: "easeInOut" }}
+                    className="absolute inset-0 origin-bottom"
                   >
-                    <path
-                      d="M120 240C186.274 240 240 186.274 240 120C240 53.7258 186.274 0 120 0C53.7258 0 0 53.7258 0 120C0 186.274 53.7258 240 120 240Z"
-                      fill="#0A0A1F"
+                    <Image
+                      src={testimonial.src}
+                      alt="Company Logo"
+                      width={500}
+                      height={500}
+                      draggable={false}
+                      className="h-full w-full rounded-3xl object-cover object-center"
                     />
-                    <path
-                      d="M180 80H60C53.3726 80 48 85.3726 48 92V172C48 178.627 53.3726 184 60 184H180C186.627 184 192 178.627 192 172V92C192 85.3726 186.627 80 180 80Z"
-                      stroke="#00FFAA"
-                      strokeWidth="2"
-                    />
-                    <path d="M48 108H192" stroke="#00FFAA" strokeWidth="2" />
-                    <path
-                      d="M64 96C65.1046 96 66 95.1046 66 94C66 92.8954 65.1046 92 64 92C62.8954 92 62 92.8954 62 94C62 95.1046 62.8954 96 64 96Z"
-                      fill="#FF00AA"
-                    />
-                    <path
-                      d="M76 96C77.1046 96 78 95.1046 78 94C78 92.8954 77.1046 92 76 92C74.8954 92 74 92.8954 74 94C74 95.1046 74.8954 96 76 96Z"
-                      fill="#00FFAA"
-                    />
-                    <path
-                      d="M88 96C89.1046 96 90 95.1046 90 94C90 92.8954 89.1046 92 88 92C86.8954 92 86 92.8954 86 94C86 95.1046 86.8954 96 88 96Z"
-                      fill="#FFAA00"
-                    />
-                    <path
-                      d="M72 140L84 128L72 116"
-                      stroke="#00FFAA"
-                      strokeWidth="2"
-                    />
-                    <path d="M96 140H168" stroke="#00FFAA" strokeWidth="2" />
-                    <path d="M96 128H144" stroke="#FF00AA" strokeWidth="2" />
-                    <path d="M96 116H120" stroke="#FFAA00" strokeWidth="2" />
-                  </svg>
-                </div>
-              </div>
+                  </motion.div>
+                ))}
+              </AnimatePresence>
             </div>
 
-            <div className="absolute bottom-0 left-0 w-20 h-20 bg-[#ff00aa]/30 rounded-full blur-2xl"></div>
-            <div className="absolute top-0 right-0 w-20 h-20 bg-[#00ffaa]/30 rounded-full blur-2xl"></div>
+            {/* Navigation Buttons */}
+            <div className="flex justify-center gap-4 mt-4">
+              <button
+                onClick={handlePrev}
+                className="h-7 w-7 rounded-full bg-gray-100 dark:bg-neutral-800 flex items-center justify-center group/button"
+              >
+                <IconArrowLeft className="h-5 w-5 text-black dark:text-neutral-400 group-hover/button:rotate-12 transition-transform duration-300" />
+              </button>
+              <button
+                onClick={handleNext}
+                className="h-7 w-7 rounded-full bg-gray-100 dark:bg-neutral-800 flex items-center justify-center group/button"
+              >
+                <IconArrowRight className="h-5 w-5 text-black dark:text-neutral-400 group-hover/button:-rotate-12 transition-transform duration-300" />
+              </button>
+            </div>
           </div>
         </motion.div>
 
+        {/* Right Section - Experience Timeline */}
         <motion.div
           initial={{ opacity: 0, x: 50 }}
           animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}

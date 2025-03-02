@@ -17,20 +17,6 @@ export default function Footer() {
             © Developer Portfolio by{" "}
             <span className="text-[#00ffaa]">Estiak Ahmed</span>
           </motion.p>
-
-          <motion.div
-            className="flex gap-4 mt-4 md:mt-0"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            <button className="flex items-center gap-2 text-white/60 hover:text-white transition-colors">
-              <Star size={16} /> STAR
-            </button>
-            <button className="flex items-center gap-2 text-white/60 hover:text-white transition-colors">
-              FORK
-            </button>
-          </motion.div>
         </div>
       </div>
     </footer>

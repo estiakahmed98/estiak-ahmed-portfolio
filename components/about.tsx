@@ -66,7 +66,20 @@ export default function About() {
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
             transition={{ duration: 0.5, delay: 0.4 }}
           >
-            <div className="relative w-64 h-auto mx-auto overflow-hidden rounded-lg border-4 border-[#00ffaa]/30">
+            <motion.div
+              className="relative w-64 h-auto mx-auto overflow-hidden rounded-lg border-4 border-[#00ffaa]/30 
+               shadow-[0_0_50px_rgba(0,255,170,0.3)] bg-[#EF0FAA]/10"
+              initial={{ scale: 1, opacity: 1 }}
+              whileHover={{
+                scale: [1, 1.3, 1], // Big Bang Effect (Expand & Shrink)
+                boxShadow: [
+                  "0px 0px 50px rgba(0,255,170,0.3)", // Initial glow
+                  "0px 0px 150px rgba(239,15,170,0.6)", // Burst effect
+                  "0px 0px 50px rgba(0,255,170,0.3)", // Back to normal
+                ],
+              }}
+              transition={{ duration: 1, ease: "easeInOut" }}
+            >
               <Image
                 src="/assets/estiak.jpg"
                 alt="Estiak Ahmed"
@@ -74,8 +87,10 @@ export default function About() {
                 height={256}
                 className="object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-tr from-[#ff00aa]/20 to-[#00ffaa]/20"></div>
-            </div>
+
+              {/* Gradient Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-tr from-[#ff00aa]/30 to-[#00ffaa]/30"></div>
+            </motion.div>
           </motion.div>
         </div>
       </div>

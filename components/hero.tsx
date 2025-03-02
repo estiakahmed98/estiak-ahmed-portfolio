@@ -105,16 +105,20 @@ export default function Hero() {
         >
           {/* Spotlight Card Wrapper for CONTACT ME Button */}
           <div className="w-fit p-[2px] rounded-2xl border border-transparent [background:conic-gradient(from_var(--border-angle),theme(colors.slate.600/.48)_80%,theme(colors.indigo.500)_86%,theme(colors.indigo.300)_90%,theme(colors.indigo.500)_94%,theme(colors.slate.600/.48))_border-box] animate-border">
-            <Button className="bg-[#0a0a1f] border border-[#ff00aa] text-white hover:bg-[#ff00aa]/20 px-6 py-3 rounded-2xl">
-              CONTACT ME
-            </Button>
+            <a href="tel:01720151612">
+              <Button className="bg-[#0a0a1f] border border-[#ff00aa] text-white hover:bg-[#ff00aa]/20 px-6 py-3 rounded-2xl">
+                CONTACT ME
+              </Button>
+            </a>
           </div>
 
           {/* Spotlight Card Wrapper for GET RESUME Button */}
           <div className="w-fit p-[2px] rounded-2xl border border-transparent [background:conic-gradient(from_var(--border-angle),theme(colors.slate.600/.48)_80%,theme(colors.indigo.500)_86%,theme(colors.indigo.300)_90%,theme(colors.indigo.500)_94%,theme(colors.slate.600/.48))_border-box] animate-border">
-            <Button className="bg-gradient-to-r from-[#ff00aa] to-[#00ffaa] text-white hover:opacity-90 px-6 py-3 rounded-2xl">
-              GET RESUME
-            </Button>
+            <a href="/assets/Estiak Ahmed.pdf" download="Estiak_Ahmed_CV.pdf">
+              <Button className="bg-gradient-to-r from-[#ff00aa] to-[#00ffaa] text-white hover:opacity-90 px-6 py-3 rounded-2xl">
+                GET RESUME
+              </Button>
+            </a>
           </div>
         </motion.div>
       </div>
