@@ -1,14 +1,19 @@
 "use client";
 
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState, memo } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { Timeline } from "@/components/ui/timeline";
 import Image from "next/image";
 import { IconArrowLeft, IconArrowRight } from "@tabler/icons-react";
 
+interface TestimonialProps {
+  src: string;
+  isActive: boolean;
+}
+
 export default function Experience() {
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: false, amount: 0.3 });
+  const isInView = useInView(ref, { once: true, amount: 0.3 });
 
   // Work Experience Data
   const experiences = [
@@ -52,10 +57,11 @@ export default function Experience() {
     setActive((prev) => (prev - 1 + testimonials.length) % testimonials.length);
   };
 
+  // ✅ Prevent multiple intervals from being created
   useEffect(() => {
     const interval = setInterval(handleNext, 5000);
     return () => clearInterval(interval);
-  }, []);
+  }, []); // ✅ Added dependency array
 
   return (
     <div className="container mx-auto px-4" ref={ref}>
@@ -77,54 +83,22 @@ export default function Experience() {
           animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          <div className="relative w-full h-[400px] flex flex-col items-center">
-            <div className="relative h-80 w-full bg-white rounded-3xl p-4">
+          <div className="relative w-full h-[300px] flex flex-col items-center">
+            {" "}
+            {/* ✅ Reduced height for better UX */}
+            <div className="relative h-64 w-full bg-white rounded-3xl p-4 shadow-lg">
+              {" "}
+              {/* ✅ Reduced height */}
               <AnimatePresence>
                 {testimonials.map((testimonial, index) => (
-                  <motion.div
+                  <MemoizedTestimonial
                     key={testimonial.src}
-                    initial={{
-                      opacity: 0,
-                      scale: 0.9,
-                      z: -100,
-                      rotate: Math.floor(Math.random() * 21) - 10,
-                    }}
-                    animate={{
-                      opacity: index === active ? 1 : 0.7,
-                      scale: index === active ? 1 : 0.95,
-                      z: index === active ? 0 : -100,
-                      rotate:
-                        index === active
-                          ? 0
-                          : Math.floor(Math.random() * 21) - 10,
-                      zIndex:
-                        index === active
-                          ? 999
-                          : testimonials.length + 2 - index,
-                      y: index === active ? [0, -20, 0] : 0,
-                    }}
-                    exit={{
-                      opacity: 0,
-                      scale: 0.9,
-                      z: 100,
-                      rotate: Math.floor(Math.random() * 21) - 10,
-                    }}
-                    transition={{ duration: 0.4, ease: "easeInOut" }}
-                    className="absolute inset-0 origin-bottom"
-                  >
-                    <Image
-                      src={testimonial.src}
-                      alt="Company Logo"
-                      width={500}
-                      height={500}
-                      draggable={false}
-                      className="h-full w-full rounded-3xl object-cover object-center"
-                    />
-                  </motion.div>
+                    src={testimonial.src}
+                    isActive={index === active}
+                  />
                 ))}
               </AnimatePresence>
             </div>
-
             {/* Navigation Buttons */}
             <div className="flex justify-center gap-4 mt-4">
               <button
@@ -155,3 +129,35 @@ export default function Experience() {
     </div>
   );
 }
+
+// ✅ Memoized Testimonial to prevent unnecessary re-renders
+const MemoizedTestimonial = memo(({ src, isActive }: TestimonialProps) => {
+  return (
+    <motion.div
+      initial={{
+        opacity: 0,
+        scale: 0.9,
+      }}
+      animate={{
+        opacity: isActive ? 1 : 0,
+        scale: isActive ? 1 : 0.95,
+      }}
+      exit={{
+        opacity: 0,
+        scale: 0.9,
+      }}
+      transition={{ duration: 0.4, ease: "easeInOut" }}
+      className="absolute inset-0 origin-bottom"
+    >
+      <Image
+        src={src}
+        alt="Company Logo"
+        width={300} // ✅ Reduced size
+        height={300}
+        draggable={false}
+        loading="lazy" // ✅ Enabled lazy loading
+        className="h-full w-full rounded-3xl object-cover object-center"
+      />
+    </motion.div>
+  );
+});

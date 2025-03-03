@@ -55,6 +55,7 @@
     "framer-motion": "^12.4.7",
     "input-otp": "1.4.1",
     "lenis": "^1.1.22",
+    "lodash.debounce": "^4.0.8",
     "lucide-react": "^0.454.0",
     "motion": "^12.4.7",
     "next": "14.2.16",
@@ -74,6 +75,7 @@
     "zod": "^3.24.1"
   },
   "devDependencies": {
+    "@types/lodash.debounce": "^4.0.9",
     "@types/node": "^22",
     "@types/react": "^18",
     "@types/react-dom": "^18",

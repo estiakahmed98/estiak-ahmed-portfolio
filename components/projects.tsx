@@ -1,6 +1,12 @@
 "use client";
 
-import { useRef, useState, useEffect } from "react";
+import React, {
+  useRef,
+  useState,
+  useEffect,
+  useCallback,
+  useMemo,
+} from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 
@@ -14,7 +20,7 @@ interface Project {
   link?: string;
 }
 
-// Sample projects data
+// Sample projects data - moved outside component to prevent recreation
 const projects: Project[] = [
   {
     title: "Reputation Prime AI",
@@ -31,7 +37,7 @@ const projects: Project[] = [
       "MongoDB",
     ],
     image: "/assets/Reputation Prime.png",
-    link: "#reputation-prime",
+    link: "#https://www.figma.com/proto/pZHcEjj8GfZ0xWE5UtjnCk/Untitled?node-id=1-3586&p=f&t=mpOuiH7LszPJrtfv-0&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1",
   },
   {
     title: "PCO Training",
@@ -41,7 +47,7 @@ const projects: Project[] = [
       "PCO Training is a specialized platform for professional drivers in the UK. It offers comprehensive training modules, practice tests, and certification preparation to help drivers meet regulatory requirements and improve their skills.",
     technologies: ["Next.js", "TypeScript", "MongoDB"],
     image: "/assets/Driving Traning.png",
-    link: "#pco-training",
+    link: "#https://uk-driving-course.vercel.app/",
   },
   {
     title: "Moving Texas",
@@ -51,7 +57,7 @@ const projects: Project[] = [
       "Moving Texas provides end-to-end relocation services across Texas. The platform matches customers with reliable movers, offers instant quotes, tracks moving progress in real-time, and provides comprehensive moving resources to ensure a stress-free experience.",
     technologies: ["Next.js", "TypeScript", "PostgreSQL"],
     image: "/assets/Moving Texas.png",
-    link: "#moving-texas",
+    link: "#https://moving-texas.vercel.app/",
   },
   {
     title: "Islami Dawa Institute",
@@ -60,7 +66,7 @@ const projects: Project[] = [
       "Islami Dawa Institute's management system streamlines administrative tasks, event management, and educational programs for Islamic organizations. It features integrated calendars, resource allocation tools, and communication portals to enhance operational efficiency.",
     technologies: ["Next.js", "Material UI", "TypeScript", "Calendar"],
     image: "/assets/Islami Dawa.png",
-    link: "#islami-dawa",
+    link: "#https://islami-dawa-institute.vercel.app/",
   },
   {
     title: "Birds Of Eden",
@@ -69,7 +75,7 @@ const projects: Project[] = [
       "Birds Of Eden's corporate website presents their software solutions portfolio, company values, and client case studies. The site features interactive demos, detailed product specifications, and a streamlined contact system for potential clients.",
     technologies: ["Next.js", "Material UI", "TypeScript", "Calendar"],
     image: "/assets/Birds Of Eden.png",
-    link: "#birds-of-eden",
+    link: "#https://birdsofeden.me/",
   },
 ];
 
@@ -80,9 +86,25 @@ export default function Projects() {
   const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState<boolean>(true);
   const [isMobile, setIsMobile] = useState<boolean>(false);
-  const autoPlayIntervalRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Check if mobile on mount and window resize
+  // Use refs for values that don't need to trigger re-renders
+  const autoPlayIntervalRef = useRef<NodeJS.Timeout | null>(null);
+  const isModalOpenRef = useRef<boolean>(false);
+
+  // Memoize indices calculations to prevent recalculation on every render
+  const { prevIndex, nextIndex } = useMemo(() => {
+    return {
+      prevIndex: activeIndex === 0 ? projects.length - 1 : activeIndex - 1,
+      nextIndex: activeIndex === projects.length - 1 ? 0 : activeIndex + 1,
+    };
+  }, [activeIndex]);
+
+  // Memoize projects to prevent needless re-renders
+  const prevProject = useMemo(() => projects[prevIndex], [prevIndex]);
+  const currentProject = useMemo(() => projects[activeIndex], [activeIndex]);
+  const nextProject = useMemo(() => projects[nextIndex], [nextIndex]);
+
+  // Optimized mobile check with throttling
   useEffect(() => {
     const checkIsMobile = () => {
       setIsMobile(window.innerWidth < 768);
@@ -91,100 +113,136 @@ export default function Projects() {
     // Initial check
     checkIsMobile();
 
-    // Add resize listener
-    window.addEventListener("resize", checkIsMobile);
+    // Throttled resize handler
+    let resizeTimeout: NodeJS.Timeout;
+    const handleResize = () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(checkIsMobile, 100);
+    };
 
-    // Cleanup
+    window.addEventListener("resize", handleResize);
+
     return () => {
-      window.removeEventListener("resize", checkIsMobile);
+      window.removeEventListener("resize", handleResize);
+      clearTimeout(resizeTimeout);
     };
   }, []);
 
-  // Auto-play functionality
+  // Auto-play functionality - optimized to minimize state updates
   useEffect(() => {
+    if (isModalOpenRef.current || !isAutoPlaying) {
+      if (autoPlayIntervalRef.current) {
+        clearInterval(autoPlayIntervalRef.current);
+        autoPlayIntervalRef.current = null;
+      }
+      return;
+    }
+
     const startAutoPlay = () => {
       if (autoPlayIntervalRef.current) {
         clearInterval(autoPlayIntervalRef.current);
       }
 
       autoPlayIntervalRef.current = setInterval(() => {
-        if (isAutoPlaying) {
-          setActiveIndex((prev) =>
-            prev === projects.length - 1 ? 0 : prev + 1
-          );
-        }
-      }, 2000); // Change slide every 5 seconds
+        setActiveIndex((prev) => (prev === projects.length - 1 ? 0 : prev + 1));
+      }, 2000); // Change slide every 2 seconds
     };
 
     startAutoPlay();
 
-    // Pause auto-play when modal is open
-    if (selectedProject) {
-      if (autoPlayIntervalRef.current) {
-        clearInterval(autoPlayIntervalRef.current);
-      }
-    } else {
-      startAutoPlay();
-    }
-
-    // Clean up interval on unmount
     return () => {
       if (autoPlayIntervalRef.current) {
         clearInterval(autoPlayIntervalRef.current);
+        autoPlayIntervalRef.current = null;
       }
     };
-  }, [isAutoPlaying, selectedProject]);
+  }, [isAutoPlaying]);
 
-  // Get the previous, current, and next projects for the carousel
-  const getPrevIndex = () =>
-    activeIndex === 0 ? projects.length - 1 : activeIndex - 1;
-  const getNextIndex = () =>
-    activeIndex === projects.length - 1 ? 0 : activeIndex + 1;
+  // Update modal open status in ref to avoid re-renders
+  useEffect(() => {
+    isModalOpenRef.current = !!selectedProject;
 
-  const prevProject = projects[getPrevIndex()];
-  const currentProject = projects[activeIndex];
-  const nextProject = projects[getNextIndex()];
+    // Only modify body style if necessary (prevents layout shifts)
+    if (selectedProject) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
 
-  const handleOpenModal = (project: Project, index: number) => {
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [selectedProject]);
+
+  // Memoized handlers to prevent recreation on each render
+  const handleOpenModal = useCallback((project: Project, index: number) => {
     setSelectedProject(project);
     setCurrentImageIndex(index);
-    document.body.style.overflow = "hidden"; // Prevent background scrolling
-  };
+  }, []);
 
-  const handleCloseModal = () => {
+  const handleCloseModal = useCallback(() => {
     setSelectedProject(null);
-    document.body.style.overflow = "auto"; // Re-enable scrolling
-  };
+  }, []);
 
-  const goToNext = () => {
-    setActiveIndex(getNextIndex());
-  };
+  const goToNext = useCallback(() => {
+    setActiveIndex((prev) => (prev === projects.length - 1 ? 0 : prev + 1));
+  }, []);
 
-  const goToPrev = () => {
-    setActiveIndex(getPrevIndex());
-  };
+  const goToPrev = useCallback(() => {
+    setActiveIndex((prev) => (prev === 0 ? projects.length - 1 : prev - 1));
+  }, []);
 
-  // Pause auto-play on hover
-  const handleMouseEnter = () => {
+  const handleMouseEnter = useCallback(() => {
     setIsAutoPlaying(false);
-  };
+  }, []);
 
-  // Resume auto-play on mouse leave
-  const handleMouseLeave = () => {
+  const handleMouseLeave = useCallback(() => {
     setIsAutoPlaying(true);
-  };
+  }, []);
 
   // Modal content ref for detecting outside clicks
   const modalContentRef = useRef<HTMLDivElement>(null);
 
-  const handleBackdropClick = (e: React.MouseEvent) => {
-    if (
-      modalContentRef.current &&
-      !modalContentRef.current.contains(e.target as Node)
-    ) {
-      handleCloseModal();
-    }
-  };
+  const handleBackdropClick = useCallback(
+    (e: React.MouseEvent) => {
+      if (
+        modalContentRef.current &&
+        !modalContentRef.current.contains(e.target as Node)
+      ) {
+        handleCloseModal();
+      }
+    },
+    [handleCloseModal]
+  );
+
+  // Optimized image navigation
+  const navigateImage = useCallback(
+    (direction: "prev" | "next", e: React.MouseEvent) => {
+      e.stopPropagation();
+
+      setCurrentImageIndex((prevIndex) => {
+        if (direction === "prev") {
+          return prevIndex === 0 ? projects.length - 1 : prevIndex - 1;
+        } else {
+          return prevIndex === projects.length - 1 ? 0 : prevIndex + 1;
+        }
+      });
+    },
+    []
+  );
+
+  // Memoized indicator buttons to prevent recreation
+  const indicators = useMemo(() => {
+    return projects.map((_, index) => (
+      <button
+        key={index}
+        className={`w-2 h-2 rounded-full transition-all duration-300 ${
+          index === activeIndex ? "bg-purple-500 w-6" : "bg-gray-600"
+        }`}
+        onClick={() => setActiveIndex(index)}
+      />
+    ));
+  }, [activeIndex]);
 
   return (
     <div className="container mx-auto px-4" ref={ref}>
@@ -251,7 +309,7 @@ export default function Projects() {
             {/* Left card (previous project) */}
             <motion.div
               className="absolute left-4 md:left-16 w-60 h-72 rounded-xl overflow-hidden shadow-lg cursor-pointer transform -translate-y-4 opacity-70 hover:opacity-80 transition-all duration-300 hidden md:block"
-              onClick={() => goToPrev()}
+              onClick={goToPrev}
               whileHover={{ scale: 1.05 }}
               layout
             >
@@ -261,6 +319,7 @@ export default function Projects() {
                   alt={prevProject.title}
                   fill
                   className="object-cover"
+                  loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-4">
                   <h3 className="text-lg font-semibold text-white">
@@ -276,7 +335,7 @@ export default function Projects() {
             {/* Right card (next project) */}
             <motion.div
               className="absolute right-4 md:right-16 w-60 h-72 rounded-xl overflow-hidden shadow-lg cursor-pointer transform -translate-y-4 opacity-70 hover:opacity-80 transition-all duration-300 hidden md:block"
-              onClick={() => goToNext()}
+              onClick={goToNext}
               whileHover={{ scale: 1.05 }}
               layout
             >
@@ -286,6 +345,7 @@ export default function Projects() {
                   alt={nextProject.title}
                   fill
                   className="object-cover"
+                  loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-4">
                   <h3 className="text-lg font-semibold text-white">
@@ -347,19 +407,9 @@ export default function Projects() {
       </div>
 
       {/* Indicators */}
-      <div className="flex justify-center mt-4 md:mt-8 gap-2">
-        {projects.map((_, index) => (
-          <button
-            key={index}
-            className={`w-2 h-2 rounded-full transition-all duration-300 ${
-              index === activeIndex ? "bg-purple-500 w-6" : "bg-gray-600"
-            }`}
-            onClick={() => setActiveIndex(index)}
-          />
-        ))}
-      </div>
+      <div className="flex justify-center mt-4 md:mt-8 gap-2">{indicators}</div>
 
-      {/* Modal */}
+      {/* Modal - Using portal for better performance */}
       <AnimatePresence>
         {selectedProject && (
           <motion.div
@@ -371,13 +421,13 @@ export default function Projects() {
           >
             <motion.div
               ref={modalContentRef}
-              className="bg-[#1b122e] rounded-xl  overflow-hidden max-w-60vh max-h-90vh overflow-y-auto"
+              className="bg-[#1b122e] rounded-xl overflow-hidden max-w-[90vh] max-h-[90vh] overflow-y-auto p-10"
               initial={{ y: 50, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: 50, opacity: 0 }}
               transition={{ type: "spring", damping: 25, stiffness: 300 }}
             >
-              <div className="relative h-60 md:h-80">
+              <div className="relative h-40 md:h-60">
                 <Image
                   src={projects[currentImageIndex].image}
                   alt={projects[currentImageIndex].title}
@@ -389,14 +439,7 @@ export default function Projects() {
 
                 {/* Image navigation buttons */}
                 <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setCurrentImageIndex(
-                      currentImageIndex === 0
-                        ? projects.length - 1
-                        : currentImageIndex - 1
-                    );
-                  }}
+                  onClick={(e) => navigateImage("prev", e)}
                   className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 p-2 rounded-full hover:bg-black/80 transition-colors"
                 >
                   <svg
@@ -417,14 +460,7 @@ export default function Projects() {
                 </button>
 
                 <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setCurrentImageIndex(
-                      currentImageIndex === projects.length - 1
-                        ? 0
-                        : currentImageIndex + 1
-                    );
-                  }}
+                  onClick={(e) => navigateImage("next", e)}
                   className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 p-2 rounded-full hover:bg-black/80 transition-colors"
                 >
                   <svg
