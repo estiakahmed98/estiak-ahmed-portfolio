@@ -204,7 +204,7 @@ export default function Education() {
             onClick={() => setGalleryOpen(false)}
           >
             <motion.div
-              className="bg-[#1a1a1a] rounded-lg max-w-3xl w-full p-6 relative"
+              className="bg-[#1a1a1a] rounded-lg max-w-[40vh] md:max-w-[80vh]  max-h-[80vh] p-6 relative mr-10"
               initial={{ scale: 0.9 }}
               animate={{ scale: 1 }}
               exit={{ scale: 0.9 }}

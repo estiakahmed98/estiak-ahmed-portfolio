@@ -37,7 +37,7 @@ const projects: Project[] = [
       "MongoDB",
     ],
     image: "/assets/Reputation Prime.png",
-    link: "#https://www.figma.com/proto/pZHcEjj8GfZ0xWE5UtjnCk/Untitled?node-id=1-3586&p=f&t=mpOuiH7LszPJrtfv-0&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1",
+    link: "https://www.figma.com/proto/pZHcEjj8GfZ0xWE5UtjnCk/Untitled?node-id=1-3586&p=f&t=mpOuiH7LszPJrtfv-0&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1",
   },
   {
     title: "PCO Training",
@@ -47,7 +47,7 @@ const projects: Project[] = [
       "PCO Training is a specialized platform for professional drivers in the UK. It offers comprehensive training modules, practice tests, and certification preparation to help drivers meet regulatory requirements and improve their skills.",
     technologies: ["Next.js", "TypeScript", "MongoDB"],
     image: "/assets/Driving Traning.png",
-    link: "#https://uk-driving-course.vercel.app/",
+    link: "https://uk-driving-course.vercel.app/",
   },
   {
     title: "Moving Texas",
@@ -57,7 +57,7 @@ const projects: Project[] = [
       "Moving Texas provides end-to-end relocation services across Texas. The platform matches customers with reliable movers, offers instant quotes, tracks moving progress in real-time, and provides comprehensive moving resources to ensure a stress-free experience.",
     technologies: ["Next.js", "TypeScript", "PostgreSQL"],
     image: "/assets/Moving Texas.png",
-    link: "#https://moving-texas.vercel.app/",
+    link: "https://moving-texas.vercel.app/",
   },
   {
     title: "Islami Dawa Institute",
@@ -66,7 +66,7 @@ const projects: Project[] = [
       "Islami Dawa Institute's management system streamlines administrative tasks, event management, and educational programs for Islamic organizations. It features integrated calendars, resource allocation tools, and communication portals to enhance operational efficiency.",
     technologies: ["Next.js", "Material UI", "TypeScript", "Calendar"],
     image: "/assets/Islami Dawa.png",
-    link: "#https://islami-dawa-institute.vercel.app/",
+    link: "https://islami-dawa-institute.vercel.app/",
   },
   {
     title: "Birds Of Eden",
@@ -75,7 +75,7 @@ const projects: Project[] = [
       "Birds Of Eden's corporate website presents their software solutions portfolio, company values, and client case studies. The site features interactive demos, detailed product specifications, and a streamlined contact system for potential clients.",
     technologies: ["Next.js", "Material UI", "TypeScript", "Calendar"],
     image: "/assets/Birds Of Eden.png",
-    link: "#https://birdsofeden.me/",
+    link: "https://birdsofeden.me/",
   },
 ];
 
