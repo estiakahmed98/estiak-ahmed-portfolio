@@ -114,7 +114,7 @@ export default function Hero() {
 
           {/* Spotlight Card Wrapper for GET RESUME Button */}
           <div className="w-fit p-[2px] rounded-2xl border border-transparent [background:conic-gradient(from_var(--border-angle),theme(colors.slate.600/.48)_80%,theme(colors.indigo.500)_86%,theme(colors.indigo.300)_90%,theme(colors.indigo.500)_94%,theme(colors.slate.600/.48))_border-box] animate-border">
-            <a href="/assets/Estiak Ahmed.pdf" download="Estiak_Ahmed_CV.pdf">
+            <a href="/assets/Estiak_Ahmed.pdf" download="Estiak_Ahmed.pdf">
               <Button className="bg-gradient-to-r from-[#ff00aa] to-[#00ffaa] text-white hover:opacity-90 px-6 py-3 rounded-2xl">
                 GET RESUME
               </Button>
@@ -148,7 +148,8 @@ export default function Hero() {
               skills: [
               <span className="text-white">
                 'Figma', 'React', 'NextJS', 'JavaScript', 'MySQL', 'MongoDB',
-                'PostgreSQL', 'WordPress', 'SEO'.
+                'PostgreSQL', 'WordPress', 'SEO', AI prompt Engineering, Data
+                Stucture & Algorithom.
               </span>
               ],
             </p>

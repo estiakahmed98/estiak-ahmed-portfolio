@@ -158,10 +158,22 @@ export default function About() {
           >
             <p className="text-white/90 leading-relaxed">
               I am Estiak Ahmed, a passionate and detail-oriented UI/UX designer
-              and Front End developer committed to crafting intuitive and
+              and Full Stack developer committed to crafting intuitive and
               visually engaging digital experiences. With a strong foundation in
               design principles and development, I bridge the gap between
               aesthetics and functionality, ensuring seamless user interactions.
+            </p>
+            <p className="text-white/90 leading-relaxed">
+              Motivated software engineer with 3 years of experience in
+              full-stack web development and digital solutions. Proven expertise
+              in creating scalable, high-performance applications and optimizing
+              user experiences through strategic design and development. Skilled
+              at implementing secure authentication processes and advanced
+              frontend/ backend integrations, contributing directly to improved
+              application reliability and user satisfaction. Passionate about
+              continuous learning, collaboration, and leveraging technology to
+              drive meaningful product innovation and impactful digital
+              experiences.
             </p>
             <p className="text-white/90 leading-relaxed">
               Proficient in JavaScript, TypeScript, React, Next.js, and modern
@@ -172,6 +184,14 @@ export default function About() {
               solving complex problems and staying ahead of emerging
               technologies. I am eager to contribute my skills to innovative
               projects and collaborative teams.
+            </p>
+            <p className="text-white/90 leading-relaxed">
+              I also specialize in AI Prompt Engineering and LLM (Large Language
+              Model) integration, enabling intelligent, context-aware systems.
+              My work in this area focuses on building seamless interactions
+              between AI and user interfaces, crafting prompts that maximize AI
+              effectiveness, and embedding real-time AI insights directly into
+              modern web applications for transformative digital experiences.
             </p>
           </motion.div>
 

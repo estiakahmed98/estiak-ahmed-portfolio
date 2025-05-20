@@ -77,6 +77,33 @@ const projects: Project[] = [
     image: "/assets/Birds Of Eden.png",
     link: "https://birdsofeden.me/",
   },
+  {
+    title: "Real Estate",
+    description:
+      "A Arabian Real Estate Company Website showcasing property Mangement .",
+    longDescription:
+      "This real estate company platform is designed to manage property listings and user interactions with distinct roles for admins, agents, and clients. Admins can oversee all operations, manage users and properties; agents can add and manage their property listings; while users can browse, filter, and inquire about properties. The system ensures secure role-based access, multilingual support, and smooth communication between all parties involved.",
+    technologies: ["Next.js", "ShadCn UI", "TypeScript", "Localization"],
+    image: "/assets/realestate.png",
+    link: "https://real-estate-admin-jade.vercel.app/en",
+  },
+  {
+    title: "BD Weather Govt. Project",
+    description:
+      "Professional weather monitoring and forecasting for Bangladesh. Access real-time data, forecasts, and historical trends with our interactive dashboard.",
+    longDescription:
+      "Advanced Weather Analytics Platform Our sophisticated dashboard provides comprehensive weather insights for Bangladesh with precision and clarity.",
+    technologies: [
+      "Next.js",
+      "ShadCn UI",
+      "TypeScript",
+      "Material UI",
+      "Chart.js",
+      "Weather API Create By Own",
+    ],
+    image: "/assets/Weather.png",
+    link: "https://weather-forecast-bd-six.vercel.app/",
+  },
 ];
 
 export default function Projects() {
