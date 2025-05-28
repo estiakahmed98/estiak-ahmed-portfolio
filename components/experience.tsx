@@ -18,25 +18,18 @@ export default function Experience() {
   // Work Experience Data
   const experiences = [
     {
+      title: "Full Stack Software Engineer",
+      company: "Birds Of Eden",
+      period: "June 2023 - Present",
+      description:
+        "Working on design with Figma, developing and maintaining web applications using React js, Next.js, and Node.js.",
+    },
+    {
       title: "Jr. Software Engineer",
-      company: "Birds Of Eden",
-      period: "June 2024 - Present",
-      description:
-        "Working on design with Figma, developing and maintaining web applications using React, Next.js, and Node.js.",
-    },
-    {
-      title: "Intern Software Engineer",
-      company: "Birds Of Eden",
-      period: "Jan 2024 - June 2024",
-      description:
-        "Working on design with Figma, developing websites using React, Next.js, and Node.js.",
-    },
-    {
-      title: "Senior Executive SEO Support",
       company: "Aan-Nahl Software",
-      period: "Mar 2022 - Jan 2024",
+      period: "Mar 2021 - Jan 2023",
       description:
-        "Worked as WordPress Developer, Web 2.0 Expert, Online Reputation Management (ORM) Expert & SEO Support.",
+        "Developing and maintaining web applications using React js, Next.js, Wordpress Theme Development, and Node.js.",
     },
   ];
 
@@ -57,7 +50,6 @@ export default function Experience() {
     setActive((prev) => (prev - 1 + testimonials.length) % testimonials.length);
   };
 
-  // ✅ Prevent multiple intervals from being created
   useEffect(() => {
     const interval = setInterval(handleNext, 5000);
     return () => clearInterval(interval);

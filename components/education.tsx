@@ -38,8 +38,8 @@ const educations = [
   {
     degree: "HIGHER SECONDARY CERTIFICATE",
     institution: "Govt. Ashek Mahmud Collage Jamalpur",
-    gpa: "GPA: 3.33 out of 5.00",
-    period: "2017",
+    gpa: "GPA: 4.33 out of 5.00",
+    period: "2016",
   },
   {
     degree: "SECONDARY SCHOOL CERTIFICATE",

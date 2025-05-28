@@ -7,8 +7,8 @@ import { Button } from "@/components/ui/button";
 import { SparklesCore } from "@/components/ui/sparkles"; // Import the Sparkles component
 
 export default function Hero() {
-  const [title, setTitle] = useState("Jr. Software Engineer");
-  const titles = ["Jr. Software Engineer", "UI/UX Designer"];
+  const [title, setTitle] = useState("Full Stack Software Engineer");
+  const titles = ["Full Stack Software Engineer", "UI/UX Designer"];
   const [titleIndex, setTitleIndex] = useState(0);
 
   useEffect(() => {
