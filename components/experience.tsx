@@ -18,18 +18,18 @@ export default function Experience() {
   // Work Experience Data
   const experiences = [
     {
-      title: "Full Stack Software Engineer",
+      title: "Jr. Software Engineer",
       company: "Birds Of Eden",
       period: "June 2023 - Present",
       description:
         "Working on design with Figma, developing and maintaining web applications using React js, Next.js, and Node.js.",
     },
     {
-      title: "Jr. Software Engineer",
+      title: "Senior Executive SEO Support",
       company: "Aan-Nahl Software",
       period: "Mar 2021 - Jan 2023",
       description:
-        "Developing and maintaining web applications using React js, Next.js, Wordpress Theme Development, and Node.js.",
+        "WordPress Theme Customization, SEO Optimization, and Content Management. Web 2.0 And Social Media Management.",
     },
   ];
 
