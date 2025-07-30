@@ -27,7 +27,7 @@ export default function Experience() {
     {
       title: "Senior Executive SEO Support",
       company: "Aan-Nahl Software",
-      period: "Mar 2021 - Jan 2023",
+      period: "Mar 2021 - Jun 2023",
       description:
         "WordPress Theme Customization, SEO Optimization, and Content Management. Web 2.0 And Social Media Management.",
     },
