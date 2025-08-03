@@ -45,7 +45,7 @@ const projects: Project[] = [
       "UK-Based Driving Training Software. Users can take driving lessons and mock tests.",
     longDescription:
       "PCO Training is a specialized platform for professional drivers in the UK. It offers comprehensive training modules, practice tests, and certification preparation to help drivers meet regulatory requirements and improve their skills.",
-    technologies: ["Next.js", "TypeScript", "MongoDB"],
+    technologies: ["Next.js", "TypeScript", "Framer Motion", "Three.js", "Plotly.js", "React Router", "Calendar", "PostgreSQL", "MongoDB"],
     image: "/assets/Driving Traning.png",
     link: "https://uk-driving-course.vercel.app/",
   },
@@ -55,7 +55,7 @@ const projects: Project[] = [
       "A Moving Company that helps customers relocate efficiently and seamlessly.",
     longDescription:
       "Moving Texas provides end-to-end relocation services across Texas. The platform matches customers with reliable movers, offers instant quotes, tracks moving progress in real-time, and provides comprehensive moving resources to ensure a stress-free experience.",
-    technologies: ["Next.js", "TypeScript", "PostgreSQL"],
+    technologies: ["Next.js", "TypeScript", "Framer Motion", "Three.js", "Plotly.js", "React Router", "Calendar", "PostgreSQL"],
     image: "/assets/Moving Texas.png",
     link: "https://moving-texas.vercel.app/",
   },
@@ -64,7 +64,7 @@ const projects: Project[] = [
     description: "A Company Management System for Islamic organizations.",
     longDescription:
       "Islami Dawa Institute's management system streamlines administrative tasks, event management, and educational programs for Islamic organizations. It features integrated calendars, resource allocation tools, and communication portals to enhance operational efficiency.",
-    technologies: ["Next.js", "Material UI", "TypeScript", "Calendar"],
+    technologies: ["Next.js", "Material UI", "TypeScript", "Framer Motion", "Three.js", "Plotly.js", "React Router", "Calendar"],
     image: "/assets/Islami Dawa.png",
     link: "https://islami-dawa-institute.vercel.app/",
   },
@@ -73,7 +73,7 @@ const projects: Project[] = [
     description: "A Software Company Website showcasing products and services.",
     longDescription:
       "Birds Of Eden's corporate website presents their software solutions portfolio, company values, and client case studies. The site features interactive demos, detailed product specifications, and a streamlined contact system for potential clients.",
-    technologies: ["Next.js", "Material UI", "TypeScript", "Calendar"],
+    technologies: ["Next.js", "Material UI", "TypeScript", "Framer Motion", "Three.js", "Plotly.js", "React Router", "Calendar"],
     image: "/assets/Birds Of Eden.png",
     link: "https://birdsofeden.me/",
   },
@@ -96,13 +96,37 @@ const projects: Project[] = [
     technologies: [
       "Next.js",
       "ShadCn UI",
+      "Three.js",
+      "Plotly.js",
+      "React Router",
+      "Leaflet",
       "TypeScript",
       "Material UI",
+      "Framer Motion",
       "Chart.js",
       "Weather API Create By Own",
     ],
     image: "/assets/Weather.png",
     link: "https://weather-forecast-bd-six.vercel.app/",
+  },
+  {
+    title: "Police DNA Report System",
+    description:
+      "A DNA Report System for Bangladesh Police. With this system, police can easily generate DNA reports for suspects and criminals and can store them in a database.",
+    longDescription:
+      "A DNA Report System for Bangladesh Police. With this system, police can easily generate DNA reports for suspects and criminals and can store them in a database.",
+    technologies: [
+      "Next.js",
+      "React js",
+      "ShadCn UI",
+      "React Router",
+      "Framer Motion",
+      "Radix UI",
+      "TypeScript",
+      "Redis",
+    ],
+    image: "/assets/dna.png",
+    link: "https://dna-case-management.vercel.app/login",
   },
 ];
 
