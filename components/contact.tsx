@@ -22,6 +22,8 @@ export default function Contact() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [submitting, setSubmitting] = useState(false);
+  const [status, setStatus] = useState<{ type: "success" | "error"; msg: string } | null>(null);
   const [isFocused, setIsFocused] = useState({
     name: false,
     email: false,
@@ -52,7 +54,34 @@ export default function Contact() {
             skills and interests.
           </p>
 
-          <form className="space-y-6">
+          <form
+            className="space-y-6"
+            onSubmit={async (e) => {
+              e.preventDefault();
+              setStatus(null);
+              if (!name || !email || !message) return;
+              try {
+                setSubmitting(true);
+                const res = await fetch("/api/contact", {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify({ name, email, message }),
+                });
+                const data = await res.json().catch(() => ({}));
+                if (!res.ok) {
+                  throw new Error(data?.error || "Failed to send message");
+                }
+                setStatus({ type: "success", msg: "Message sent successfully! I'll get back to you soon." });
+                setName("");
+                setEmail("");
+                setMessage("");
+              } catch (err: any) {
+                setStatus({ type: "error", msg: err?.message || "Something went wrong. Please try again." });
+              } finally {
+                setSubmitting(false);
+              }
+            }}
+          >
             <div>
               <label htmlFor="name" className="block text-sm font-medium mb-2">
                 Your Name:
@@ -60,6 +89,7 @@ export default function Contact() {
               <div className="relative">
                 <Input
                   id="name"
+                  required
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   onFocus={() => setIsFocused({ ...isFocused, name: true })}
@@ -89,6 +119,7 @@ export default function Contact() {
                 <Input
                   id="email"
                   type="email"
+                  required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   onFocus={() => setIsFocused({ ...isFocused, email: true })}
@@ -120,6 +151,7 @@ export default function Contact() {
               <div className="relative">
                 <Textarea
                   id="message"
+                  required
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                   onFocus={() => setIsFocused({ ...isFocused, message: true })}
@@ -141,8 +173,22 @@ export default function Contact() {
               </div>
             </div>
 
-            <Button className="w-full bg-gradient-to-r from-[#ff00aa] to-[#00ffaa] hover:opacity-90">
-              SEND MESSAGE
+            {status && (
+              <p
+                className={`${
+                  status.type === "success" ? "text-green-400" : "text-red-400"
+                } text-sm`}
+              >
+                {status.msg}
+              </p>
+            )}
+
+            <Button
+              type="submit"
+              disabled={submitting}
+              className="w-full bg-gradient-to-r from-[#ff00aa] to-[#00ffaa] hover:opacity-90 disabled:opacity-60"
+            >
+              {submitting ? "SENDING..." : "SEND MESSAGE"}
             </Button>
           </form>
         </motion.div>
