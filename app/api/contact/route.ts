@@ -12,12 +12,12 @@ export async function POST(req: Request) {
       );
     }
 
-    const host = "smtp.gmail.com";
-    const port = 587;
-    const user = "estiakahmed898@gmail.com";
-    const pass = "iilmriyboupwhppf";
-    const to = "estiakahmed898@gmail.com";
-    const from = user;
+    const host = process.env.SMTP_HOST;
+    const port = Number(process.env.SMTP_PORT || 587);
+    const user = process.env.SMTP_USER;
+    const pass = process.env.SMTP_PASS;
+    const to = process.env.MAIL_TO || "estiakahmed898@gmail.com";
+    const from = process.env.MAIL_FROM || user || "no-reply@yourdomain.com";
 
     if (!host || !user || !pass) {
       return NextResponse.json(
@@ -29,7 +29,7 @@ export async function POST(req: Request) {
     const transporter = nodemailer.createTransport({
       host,
       port,
-      secure: port === 587, // true for 465, false for other ports
+      secure: port === 465, // true for 465, false for other ports
       auth: { user, pass },
     });
 
