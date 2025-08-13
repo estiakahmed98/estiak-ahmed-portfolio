@@ -15,7 +15,7 @@ export async function POST(req: Request) {
     const host = "smtp.gmail.com";
     const port = 587;
     const user = "estiakahmed898@gmail.com";
-    const pass = "estiakahmed898";
+    const pass = "iilmriyboupwhppf";
     const to = "estiakahmed898@gmail.com";
     const from = user;
 
