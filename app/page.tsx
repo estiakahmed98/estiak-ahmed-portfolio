@@ -1,7 +1,3 @@
-"use client";
-
-import { useEffect, useState } from "react";
-import { useScroll } from "framer-motion";
 import Navbar from "@/components/navbar";
 import Hero from "@/components/hero";
 import About from "@/components/about";
@@ -16,27 +12,16 @@ import Experience from "@/components/experience";
 // import Index from "@/components/ui/StackingCards";
 
 export default function Home() {
-  const { scrollYProgress } = useScroll();
-  const [scrollProgress, setScrollProgress] = useState(0);
-
-  useEffect(() => {
-    const unsubscribe = scrollYProgress.onChange((latest) => {
-      setScrollProgress(latest);
-    });
-
-    return () => unsubscribe();
-  }, [scrollYProgress]);
-
   return (
     <>
       <main>
         <div className="relative min-h-screen overflow-hidden bg-[#0a0a1f]">
-          <BackgroundGradientAnimation>
+          <BackgroundGradientAnimation interactive={false}>
             <div className="absolute inset-0 z-0 bg-[#0a0a1f]/80" />
           </BackgroundGradientAnimation>
 
           <div className="relative z-10">
-            <Navbar scrollProgress={scrollProgress} />
+            <Navbar />
 
             <section id="home">
               <Hero />

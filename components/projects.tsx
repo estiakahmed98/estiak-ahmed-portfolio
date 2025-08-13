@@ -371,6 +371,7 @@ export default function Projects() {
                   fill
                   className="object-cover"
                   loading="lazy"
+                  sizes="(max-width: 768px) 0px, 240px"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-4">
                   <h3 className="text-lg font-semibold text-white">
@@ -397,6 +398,7 @@ export default function Projects() {
                   fill
                   className="object-cover"
                   loading="lazy"
+                  sizes="(max-width: 768px) 0px, 240px"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-4">
                   <h3 className="text-lg font-semibold text-white">
@@ -428,7 +430,7 @@ export default function Projects() {
               alt={currentProject.title}
               fill
               className="object-cover"
-              priority
+              sizes="(max-width: 768px) 100vw, 460px"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-4">
               <h3 className="text-xl font-bold text-white">
@@ -484,7 +486,8 @@ export default function Projects() {
                   alt={projects[currentImageIndex].title}
                   fill
                   className="object-cover rounded-t-xl"
-                  priority
+                  loading="lazy"
+                  sizes="(max-width: 768px) 100vw, 640px"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#1b122e] to-transparent"></div>
 

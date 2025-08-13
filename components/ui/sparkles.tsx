@@ -46,7 +46,7 @@ export function SparklesCore({
       enable: false,
       zIndex: 1,
     },
-    fpsLimit: 120,
+    fpsLimit: 60,
     interactivity: {
       events: {
         onClick: {
@@ -74,9 +74,9 @@ export function SparklesCore({
       },
       links: {
         color: particleColor,
-        distance: 150,
-        enable: true,
-        opacity: 0.5,
+        distance: 120,
+        enable: false,
+        opacity: 0.3,
         width: 1,
       },
       move: {
@@ -91,10 +91,10 @@ export function SparklesCore({
       },
       number: {
         density: {
-          enable: true,
-          area: particleDensity,
+          enable: false,
         },
-        value: 80,
+        // Drive particle count directly for simpler performance control
+        value: particleDensity,
       },
       opacity: {
         value: 0.5,

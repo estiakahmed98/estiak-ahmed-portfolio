@@ -4,12 +4,18 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Github, Linkedin, Facebook, Twitter } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { SparklesCore } from "@/components/ui/sparkles"; // Import the Sparkles component
+import dynamic from "next/dynamic";
+// Lazy-load heavy particles component (no SSR)
+const SparklesCore = dynamic(
+  () => import("@/components/ui/sparkles").then((m) => m.SparklesCore),
+  { ssr: false }
+);
 
 export default function Hero() {
   const [title, setTitle] = useState("Jr. Software Engineer");
   const titles = ["Jr. Software Engineer", "UI/UX Designer"];
   const [titleIndex, setTitleIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -20,6 +26,13 @@ export default function Hero() {
     return () => clearInterval(interval);
   }, [titles]);
 
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener("resize", check, { passive: true });
+    return () => window.removeEventListener("resize", check as any);
+  }, []);
+
   return (
     <div className="relative container mx-auto px-4 h-screen flex flex-col md:flex-row items-center justify-center gap-8">
       {/* Background Sparkles Animation */}
@@ -29,12 +42,13 @@ export default function Hero() {
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
       >
+        {/* Render particles with reduced density on mobile */}
         <SparklesCore
           id="tsparticlesHero"
           background="transparent"
           minSize={0.6}
-          maxSize={1.4}
-          particleDensity={80}
+          maxSize={1.2}
+          particleDensity={isMobile ? 30 : 70}
           className="w-full h-full"
           particleColor="#ff00aa"
         />
