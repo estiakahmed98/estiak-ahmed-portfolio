@@ -128,6 +128,25 @@ const projects: Project[] = [
     image: "/assets/dna.png",
     link: "https://dna-case-management.vercel.app/login",
   },
+  {
+    title: "saamari - Elevating Health, Wellness & Humanity",
+    description:
+      "A luxury health, wellness & health-tech company building our global flagship. Welcoming visionary partners worldwide to shape the future of human wellbeing.",
+    longDescription:
+      "At SaaMari, we believe in the intersection of luxury and wellness, where science meets humanity. Our approach is rooted in precision, guided by research, and inspired by the profound potential of human flourishing. We curate experiences that transcend traditional boundaries, creating pathways to elevated health and wellness that honor both individual needs and collective wellbeing.",
+    technologies: [
+      "Next.js",
+      "React js",
+      "ShadCn UI",
+      "React Router",
+      "Framer Motion",
+      "Radix UI",
+      "TypeScript",
+      "Redis",
+    ],
+    image: "/assets/saamari.png",
+    link: "https://saamari.com/",
+  },
 ];
 
 export default function Projects() {
@@ -606,6 +625,7 @@ export default function Projects() {
                   <div className="flex flex-col sm:flex-row gap-3 pt-4">
                     <motion.a
                       href={projects[currentImageIndex].link || "#"}
+                      target="_blank"
                       className="px-6 py-3 bg-purple-700 hover:bg-purple-600 transition-colors rounded-md flex items-center justify-center gap-2"
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
