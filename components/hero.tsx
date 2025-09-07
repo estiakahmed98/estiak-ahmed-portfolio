@@ -13,7 +13,7 @@ const SparklesCore = dynamic(
 
 export default function Hero() {
   const [title, setTitle] = useState("Jr. Software Engineer");
-  const titles = ["Jr. Software Engineer", "Frontend Developer"];
+  const titles = ["Jr. Software Engineer", "Full Stack Developer"];
   const [titleIndex, setTitleIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
 
