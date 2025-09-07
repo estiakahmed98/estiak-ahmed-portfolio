@@ -3,14 +3,13 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { SparklesCore } from "@/components/ui/sparkles";
-import Stack from "@/components/ui/Stack"; // Import the Stack component
+import Stack from "@/components/ui/Stack";
 import Image from "next/image";
 
 export default function About() {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: false, amount: 0.3 });
 
-  // Stack images
   const images = [
     { id: 1, img: "/assets/estiak.jpg" },
     { id: 2, img: "/assets/estiak2.jpg" },
@@ -57,41 +56,43 @@ export default function About() {
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             <p className="text-white/90 leading-relaxed">
-              I am Estiak Ahmed, a passionate and detail-oriented UI/UX designer
-              and Full Stack developer committed to crafting intuitive and
-              visually engaging digital experiences. With a strong foundation in
-              design principles and development, I bridge the gap between
-              aesthetics and functionality, ensuring seamless user interactions.
+              I am <span className="font-semibold">Estiak Ahmed</span>, a{" "}
+              <span className="text-[#00ffaa]">Full Stack Developer</span> with
+              3+ years of experience building scalable, high-performance web
+              applications. My work bridges{" "}
+              <strong>frontend design excellence</strong> with{" "}
+              <strong>backend robustness</strong>, ensuring seamless and secure
+              user experiences.
             </p>
+
             <p className="text-white/90 leading-relaxed">
-              Motivated software engineer with 3 years of experience in
-              full-stack web development and digital solutions. Proven expertise
-              in creating scalable, high-performance applications and optimizing
-              user experiences through strategic design and development. Skilled
-              at implementing secure authentication processes and advanced
-              frontend/ backend integrations, contributing directly to improved
-              application reliability and user satisfaction. Passionate about
-              continuous learning, collaboration, and leveraging technology to
-              drive meaningful product innovation and impactful digital
-              experiences.
+              Currently at <span className="font-semibold">Birds of Eden</span>,
+              I focus on <strong>Next.js, TypeScript, Tailwind CSS,</strong> and
+              secure authentication flows. I specialize in turning complex
+              business requirements into intuitive digital solutions, while
+              optimizing for performance, scalability, and reliability.
             </p>
+
             <p className="text-white/90 leading-relaxed">
-              Proficient in JavaScript, TypeScript, React, Next.js, and modern
-              UI frameworks, I specialize in building scalable, high-performance
-              applications. My expertise extends beyond coding—I focus on
-              creating user-centered designs that enhance usability and
-              accessibility. Dedicated to continuous learning, I thrive on
-              solving complex problems and staying ahead of emerging
-              technologies. I am eager to contribute my skills to innovative
-              projects and collaborative teams.
+              My skill set includes{" "}
+              <strong>
+                JavaScript, TypeScript, React, Next.js, Python, SQL/NoSQL
+                databases (PostgreSQL, MongoDB, MySQL), REST APIs, and modern UI
+                frameworks
+              </strong>
+              . I also leverage{" "}
+              <strong>Redux, Git, and automated testing tools</strong> to
+              maintain clean, production-ready codebases.
             </p>
+
             <p className="text-white/90 leading-relaxed">
-              I also specialize in AI Prompt Engineering and LLM (Large Language
-              Model) integration, enabling intelligent, context-aware systems.
-              My work in this area focuses on building seamless interactions
-              between AI and user interfaces, crafting prompts that maximize AI
-              effectiveness, and embedding real-time AI insights directly into
-              modern web applications for transformative digital experiences.
+              Beyond web development, I explore{" "}
+              <span className="text-[#00ffaa] font-semibold">
+                AI Prompt Engineering and LLM Integration
+              </span>
+              , embedding intelligent, context-aware features into applications.
+              My goal is to build digital products that are not only functional
+              but also adaptive, future-ready, and impactful.
             </p>
           </motion.div>
 
