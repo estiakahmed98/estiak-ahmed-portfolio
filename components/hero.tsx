@@ -55,7 +55,7 @@ export default function Hero() {
       </motion.div>
 
       {/* Hero Content */}
-      <div className="relative z-10 md:w-1/2 space-y-6">
+      <div className="relative mt-10 z-10 md:w-1/2 space-y-6">
         <motion.h1
           className="text-4xl md:text-5xl lg:text-6xl font-bold"
           initial={{ opacity: 0, y: 20 }}
