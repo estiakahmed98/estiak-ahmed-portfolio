@@ -161,9 +161,9 @@ export default function Hero() {
             <p className="ml-4">
               skills: [
               <span className="text-white">
-                'Figma', 'React', 'NextJS', 'JavaScript', 'MySQL', 'MongoDB',
-                'PostgreSQL', 'WordPress', 'SEO', AI prompt Engineering, Data
-                Stucture & Algorithom.
+                'React', 'NextJS', 'Vue Js' 'JavaScript', 'TypeScript', 'MySQL',
+                'MongoDB', 'PostgreSQL', 'Figma', 'WordPress', 'SEO', AI prompt
+                Engineering, 'Python', Data Stucture & Algorithom.
               </span>
               ],
             </p>
