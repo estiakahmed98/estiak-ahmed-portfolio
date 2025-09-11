@@ -23,21 +23,23 @@ interface Project {
 // Sample projects data - moved outside component to prevent recreation
 const projects: Project[] = [
   {
-    title: "Reputation Prime AI",
+    title: "Ann-Nahl Task Management",
     description:
-      "AI-Based ERP Software with intelligent automation and insights.",
+      "Next.js + TypeScript task & client operations app with posting-task builder, data-entry flows, and QC reviews.",
     longDescription:
-      "Reputation Prime AI is a comprehensive ERP solution that leverages artificial intelligence to streamline business operations. The platform offers predictive analytics, automated workflows, and intelligent insights to improve decision-making processes.",
+      "Ann-Nahl Task Management is a web app built with Next.js (App Router) and TypeScript. It includes panels for data entry, posting-task generation, QC approval status, activity logs, and pause-reason tracking. UI is built with Tailwind CSS and shadcn/ui; APIs live in Next.js route handlers; Prisma is used as the ORM. Deployed on Vercel for quick previews.",
     technologies: [
-      "Node.js",
+      "Next.js",
+      "React",
       "TypeScript",
-      "PHP",
-      "Python",
-      "Django",
-      "MongoDB",
+      "Prisma",
+      "Tailwind CSS",
+      "shadcn/ui",
+      "Lucide React",
+      "Vercel",
     ],
-    image: "/assets/Reputation Prime.png",
-    link: "https://www.figma.com/proto/pZHcEjj8GfZ0xWE5UtjnCk/Untitled?node-id=1-3586&p=f&t=mpOuiH7LszPJrtfv-0&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1",
+    image: "/assets/ann-nahl-task-management.png",
+    link: "https://task-management-ann-nahl-gray.vercel.app",
   },
   {
     title: "PCO Training",
@@ -45,7 +47,17 @@ const projects: Project[] = [
       "UK-Based Driving Training Software. Users can take driving lessons and mock tests.",
     longDescription:
       "PCO Training is a specialized platform for professional drivers in the UK. It offers comprehensive training modules, practice tests, and certification preparation to help drivers meet regulatory requirements and improve their skills.",
-    technologies: ["Next.js", "TypeScript", "Framer Motion", "Three.js", "Plotly.js", "React Router", "Calendar", "PostgreSQL", "MongoDB"],
+    technologies: [
+      "Next.js",
+      "TypeScript",
+      "Framer Motion",
+      "Three.js",
+      "Plotly.js",
+      "React Router",
+      "Calendar",
+      "PostgreSQL",
+      "MongoDB",
+    ],
     image: "/assets/Driving Traning.png",
     link: "https://uk-driving-course.vercel.app/",
   },
@@ -55,7 +67,16 @@ const projects: Project[] = [
       "A Moving Company that helps customers relocate efficiently and seamlessly.",
     longDescription:
       "Moving Texas provides end-to-end relocation services across Texas. The platform matches customers with reliable movers, offers instant quotes, tracks moving progress in real-time, and provides comprehensive moving resources to ensure a stress-free experience.",
-    technologies: ["Next.js", "TypeScript", "Framer Motion", "Three.js", "Plotly.js", "React Router", "Calendar", "PostgreSQL"],
+    technologies: [
+      "Next.js",
+      "TypeScript",
+      "Framer Motion",
+      "Three.js",
+      "Plotly.js",
+      "React Router",
+      "Calendar",
+      "PostgreSQL",
+    ],
     image: "/assets/Moving Texas.png",
     link: "https://moving-texas.vercel.app/",
   },
@@ -64,7 +85,16 @@ const projects: Project[] = [
     description: "A Company Management System for Islamic organizations.",
     longDescription:
       "Islami Dawa Institute's management system streamlines administrative tasks, event management, and educational programs for Islamic organizations. It features integrated calendars, resource allocation tools, and communication portals to enhance operational efficiency.",
-    technologies: ["Next.js", "Material UI", "TypeScript", "Framer Motion", "Three.js", "Plotly.js", "React Router", "Calendar"],
+    technologies: [
+      "Next.js",
+      "Material UI",
+      "TypeScript",
+      "Framer Motion",
+      "Three.js",
+      "Plotly.js",
+      "React Router",
+      "Calendar",
+    ],
     image: "/assets/Islami Dawa.png",
     link: "https://islami-dawa-institute.vercel.app/",
   },
@@ -73,7 +103,16 @@ const projects: Project[] = [
     description: "A Software Company Website showcasing products and services.",
     longDescription:
       "Birds Of Eden's corporate website presents their software solutions portfolio, company values, and client case studies. The site features interactive demos, detailed product specifications, and a streamlined contact system for potential clients.",
-    technologies: ["Next.js", "Material UI", "TypeScript", "Framer Motion", "Three.js", "Plotly.js", "React Router", "Calendar"],
+    technologies: [
+      "Next.js",
+      "Material UI",
+      "TypeScript",
+      "Framer Motion",
+      "Three.js",
+      "Plotly.js",
+      "React Router",
+      "Calendar",
+    ],
     image: "/assets/Birds Of Eden.png",
     link: "https://birdsofeden.me/",
   },
@@ -146,6 +185,27 @@ const projects: Project[] = [
     ],
     image: "/assets/saamari.png",
     link: "https://saamari.com/",
+  },
+  {
+    title: "Reputation Prime - The Best Reputation Management Company",
+    description:
+      "Suppress negative content, control your online presence with the best reputation management services in the industry.",
+    longDescription:
+      "At ReputationPrime, we help individuals, high-profile executives, and businesses take control of their online presence. In today’s digital age, reputation is critical, and one unfavorable or misleading article, review, or post can quickly shape public perception. A lackluster online presence can also harm an individual and business brand. Our expertise in Online Reputation Management (ORM) ensures that your personal or corporate identity is appropriately represented in search results, social media, and review sites. We understand Google’s algorithm unlike anyone else and utilize cutting-edge techniques to get the best results in the industry. We also care about our clients and don’t employ cookie-cutter solutions. We offer a tailored strategy that’s data-driven, proactive, and intended to protect, enhance, and restore your reputation.",
+    technologies: [
+      "Figma",
+      "WordPress",
+      "Elementor",
+      "CSS",
+      "jQuery",
+      "PHP",
+      "MySQL",
+      "SEO",
+      "Google Analytics",
+      "Google Search Console",
+    ],
+    image: "/assets/ReputationPrime.png",
+    link: "https://reputationprime.com/",
   },
 ];
 
