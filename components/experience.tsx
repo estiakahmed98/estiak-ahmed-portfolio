@@ -18,18 +18,18 @@ export default function Experience() {
   // Work Experience Data
   const experiences = [
     {
-      title: "Jr. Software Engineer",
+      title: "Software Engineer",
       company: "Birds Of Eden",
-      period: "June 2023 - Present",
+      period: "June 2024 - Present",
       description:
-        "Working on design with Figma, developing and maintaining web applications using React js, Next.js, and Node.js.",
+        "Contributed as a Software Engineer at Birds of Eden, focusing on full-stack development with Node.js, TypeScript, Tailwind CSS, and NextAuth. Built and optimized scalable web applications, improved performance and user experience, and implemented secure authentication workflows while maintaining high code quality and collaborating effectively with the team.",
     },
     {
-      title: "Senior Executive SEO Support",
+      title: "Senior Web Developer",
       company: "Aan-Nahl Software",
-      period: "Mar 2021 - Jun 2023",
+      period: "Mar 2021 - Jun 2024",
       description:
-        "WordPress Theme Customization, SEO Optimization, and Content Management. Web 2.0 And Social Media Management.",
+        "Senior Web Developer at Aan-Nahl Software with expertise in WordPress theme development and customization, Web 2.0 property building, and digital asset creation. Delivered SEO-optimized, high-performance WordPress solutions and contributed to online reputation management through strategic technical and content improvements.",
     },
   ];
 

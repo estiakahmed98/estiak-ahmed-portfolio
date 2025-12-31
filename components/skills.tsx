@@ -19,7 +19,6 @@ export default function Skills() {
   const skills = [
     { name: "HTML", level: "Expert" },
     { name: "CSS", level: "Expert" },
-    { name: "BootStrap", level: "Expert" },
     { name: "Figma", level: "Expert" },
     { name: "Tailwind CSS", level: "Expert" },
     { name: "MySQL", level: "Advanced" },
@@ -30,13 +29,10 @@ export default function Skills() {
     { name: "Python", level: "Intermediate" },
     { name: "Next.js", level: "Advanced" },
     { name: "React", level: "Advanced" },
-    { name: "Redux", level: "Intermediate" },
-    { name: "Jest", level: "Intermediate" },
     { name: "SEO", level: "Intermediate" },
     { name: "Git", level: "Advanced" },
     { name: "WordPress", level: "Intermediate" },
     { name: "AI prompt Engineering", level: "Expert" },
-    { name: "Data Stucture & Algorithom", level: "Beginner" },
   ];
 
   // Skill Icons with optimized animation

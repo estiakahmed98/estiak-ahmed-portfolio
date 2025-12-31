@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 
 export const metadata: Metadata = {
   title: "Estiak Ahmed",
-  description: "Jr. Software Engineer",
+  description: "Software Engineer",
 };
 
 export default function RootLayout({
