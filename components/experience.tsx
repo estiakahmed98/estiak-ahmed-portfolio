@@ -27,7 +27,7 @@ export default function Experience() {
     {
       title: "Senior Web Developer",
       company: "Aan-Nahl Software",
-      period: "Mar 2021 - Jun 2024",
+      period: "Mar 2022 - Jun 2024",
       description:
         "Senior Web Developer at Aan-Nahl Software with expertise in WordPress theme development and customization, Web 2.0 property building, and digital asset creation. Delivered SEO-optimized, high-performance WordPress solutions and contributed to online reputation management through strategic technical and content improvements.",
     },
