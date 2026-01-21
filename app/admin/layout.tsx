@@ -1,0 +1,11 @@
+// app/admin/layout.tsx
+import React from "react";
+import AdminLayout from "@/components/admin/AdminLayout";
+
+export default function AdminDashboardLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return <AdminLayout>{children}</AdminLayout>;
+}

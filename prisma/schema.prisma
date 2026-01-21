@@ -1,0 +1,173 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  name          String?
+  role          Role      @default(USER)
+  passwordHash  String?   @map("password")
+  phone         String?
+  image         String?
+  emailVerified DateTime?
+
+  accounts Account[]
+  sessions Session[]
+
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+  analyticsEvents AnalyticsEvent[]
+
+  @@map("users")
+}
+
+model Account {
+  id     String @id @default(cuid())
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  provider          String
+  providerAccountId String
+  type              String
+
+  access_token  String?
+  refresh_token String?
+  id_token      String?
+  expires_at    Int?
+  token_type    String?
+  scope         String?
+  session_state String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([provider, providerAccountId])
+  @@index([userId])
+  @@map("accounts")
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expires      DateTime
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId])
+  @@map("sessions")
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+  @@map("verification_tokens")
+}
+
+model Blog {
+  id        Int      @id @default(autoincrement())
+  slug      String   @unique
+  title     String
+  summary   String
+  content   String   @db.Text
+  date      DateTime
+  author    String
+  image     String
+  ads       String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum AnalyticsEventName {
+  session_start
+  page_view
+  heartbeat
+}
+
+model AnalyticsEvent {
+  id    BigInt             @id @default(autoincrement())
+  ts    DateTime           @default(now())
+  event AnalyticsEventName
+
+  // Identity
+  visitorId String  @map("visitor_id") // GA client_id like
+  sessionId String  @map("session_id") // GA session
+  userId    String? @map("user_id") // optional (logged in)
+  user      User?   @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  // Page
+  path     String  @default("/") @map("path")
+  title    String? @map("title")
+  referrer String? @map("referrer")
+
+  // UTM
+  utmSource   String? @map("utm_source")
+  utmMedium   String? @map("utm_medium")
+  utmCampaign String? @map("utm_campaign")
+
+  // Device
+  deviceType String? @map("device_type") // mobile/desktop/tablet
+  browser    String? @map("browser")
+  os         String? @map("os")
+  screen     String? @map("screen")
+  lang       String? @map("lang")
+
+  // Geo (optional)
+  country String? @map("country")
+  city    String? @map("city")
+
+  // Engagement (heartbeat only)
+  activeSeconds Int @default(0) @map("active_seconds")
+
+  ipHash String? @map("ip_hash")
+  dayKey String  @default("") @map("day_key")
+
+  @@index([dayKey])
+  @@index([ipHash, dayKey])
+  @@index([ts])
+  @@index([event, ts])
+  @@index([visitorId, ts])
+  @@index([sessionId, ts])
+  @@index([path, ts])
+  @@index([utmSource, ts])
+  @@index([deviceType, ts])
+  @@map("analytics_events")
+}
+
+model GeoIpCache {
+  id        Int      @id @default(autoincrement())
+  ip        String   @unique
+  country   String?
+  city      String?
+  region    String?
+  lat       Float?
+  lon       Float?
+  isp       String?
+  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now())
+
+  @@index([updatedAt])
+  @@map("geo_ip_cache")
+}
