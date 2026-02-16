@@ -176,15 +176,15 @@ const projects: Project[] = [
       "PostgreSQL",
       "MongoDB",
     ],
-    image: "/assets/Driving Traning.png",
+    image: "/assets/PCO_Training.png",
     link: "https://uk-driving-course.vercel.app/",
   },
   {
-    title: "Moving Texas",
+    title: "Moving Quote Texas",
     description:
       "A Moving Company that helps customers relocate efficiently and seamlessly.",
     longDescription:
-      "Moving Texas provides end-to-end relocation services across Texas. The platform matches customers with reliable movers, offers instant quotes, tracks moving progress in real-time, and provides comprehensive moving resources to ensure a stress-free experience.",
+      "Moving Quote Texas provides end-to-end relocation services across Texas. The platform matches customers with reliable movers, offers instant quotes, tracks moving progress in real-time, and provides comprehensive moving resources to ensure a stress-free experience.",
     technologies: [
       "Next.js",
       "TypeScript",
@@ -196,7 +196,7 @@ const projects: Project[] = [
       "PostgreSQL",
     ],
     image: "/assets/Moving Texas.png",
-    link: "https://moving-texas.vercel.app/",
+    link: "https://movingquotetexas.com/",
   },
   {
     title: "Real Estate",
@@ -383,7 +383,7 @@ export default function Projects() {
         handleCloseModal();
       }
     },
-    [handleCloseModal]
+    [handleCloseModal],
   );
 
   // Optimized image navigation
@@ -399,7 +399,7 @@ export default function Projects() {
         }
       });
     },
-    []
+    [],
   );
 
   // Memoized indicator buttons to prevent recreation
@@ -705,7 +705,7 @@ export default function Projects() {
                           >
                             {tech}
                           </span>
-                        )
+                        ),
                       )}
                     </div>
                   </div>
