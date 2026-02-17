@@ -3,7 +3,14 @@ import { PrismaPg } from "@prisma/adapter-pg";
 import { Pool } from "pg";
 import bcrypt from "bcryptjs";
 
-const pgPool = new Pool({ connectionString: process.env.DATABASE_URL });
+// Handle case where DATABASE_URL might not be available during build
+const databaseUrl = process.env.DATABASE_URL;
+if (!databaseUrl) {
+  console.log("⚠️  DATABASE_URL not found, skipping seed");
+  process.exit(0);
+}
+
+const pgPool = new Pool({ connectionString: databaseUrl });
 const prisma = new PrismaClient({
   adapter: new PrismaPg(pgPool),
 });
