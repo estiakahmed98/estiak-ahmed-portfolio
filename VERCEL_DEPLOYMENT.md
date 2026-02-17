@@ -59,7 +59,7 @@ After deployment, you may need to run the database seed:
 ## Troubleshooting
 
 ### "DATABASE_URL not found" Error
-- Ensure `DATABASE_URL` is set in Vercel environment variables
+- Ensure `DATABASE_URL` 
 - Check the connection string format
 - Verify database is accessible
 
