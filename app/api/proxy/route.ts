@@ -1,5 +1,5 @@
 import { getToken } from "next-auth/jwt";
-import { NextResponse, type NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 const PUBLIC_PATHS = new Set([
   "/",
@@ -32,7 +32,27 @@ function safeCallback(request: NextRequest) {
   return cb;
 }
 
-export default async function middleware(request: NextRequest) {
+export async function GET(request: NextRequest) {
+  return handleRequest(request);
+}
+
+export async function POST(request: NextRequest) {
+  return handleRequest(request);
+}
+
+export async function PUT(request: NextRequest) {
+  return handleRequest(request);
+}
+
+export async function DELETE(request: NextRequest) {
+  return handleRequest(request);
+}
+
+export async function PATCH(request: NextRequest) {
+  return handleRequest(request);
+}
+
+async function handleRequest(request: NextRequest) {
   const { pathname, search } = request.nextUrl;
 
   // Static + public shortcuts
@@ -77,7 +97,3 @@ export default async function middleware(request: NextRequest) {
 
   return NextResponse.next();
 }
-
-export const config = {
-  matcher: ["/((?!_next/static|_next/image|favicon.ico|api/auth|static).*)"],
-};

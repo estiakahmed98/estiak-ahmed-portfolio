@@ -1,57 +1,57 @@
-//components/richTextEditor.tsx
+// components/RichTextEditor.tsx
 
-import React, { useState, useRef, useMemo } from "react";
-// import JoditEditor from "jodit-react";
-import dynamic from "next/dynamic";
+import React from "react";
+import { Editor } from "@tinymce/tinymce-react";
 
-const JoditEditor = dynamic(() => import("jodit-react"), { ssr: false });
-
-interface JoditEditorProps {
-  placeholder?: string;
-  initialValue?: string;
-  onContentChange?: (content: string) => void; // eslint-disable-line no-unused-vars
-  height?: string | number;
-  width?: string | number;
+interface RichTextEditorProps {
+  value: string;
+  onChange: (content: string) => void;
+  height?: number;
 }
 
-const JoditEditorComponent: React.FC<JoditEditorProps> = ({
-  placeholder = "Start typing...",
-  initialValue = "",
-  onContentChange,
-  height = "400px",
-  width = "100%",
+const RichTextEditor: React.FC<RichTextEditorProps> = ({
+  value,
+  onChange,
+  height = 400,
 }) => {
-  const editor = useRef(null);
-  const [content, setContent] = useState(initialValue);
-
-  const config = useMemo(
-    () => ({
-      readonly: false,
-      toolbar: true,
-      placeholder,
-      height,
-    }),
-    [placeholder, height]
-  );
-
-  const handleBlur = (newContent: string) => {
-    setContent(newContent);
-    onContentChange?.(newContent);
-  };
-
   return (
-    <div style={{ width, height }}>
-      {" "}
-      {/* Apply width and height to parent container */}
-      <JoditEditor
-        ref={editor}
-        value={content}
-        config={config}
-        onBlur={handleBlur}
-        onChange={() => {}}
-      />
-    </div>
+    <Editor
+      apiKey="didaagwh80y1vdeim49h9hsorsljm8n5mmr713t1r6n5m4zr"
+      init={{
+        height: height,
+        menubar: true,
+        plugins: [
+          "advlist",
+          "autolink",
+          "lists",
+          "link",
+          "image",
+          "charmap",
+          "preview",
+          "anchor",
+          "searchreplace",
+          "visualblocks",
+          "code",
+          "fullscreen",
+          "insertdatetime",
+          "media",
+          "table",
+          "code",
+          "help",
+          "wordcount",
+        ],
+        toolbar:
+          "undo redo | blocks | " +
+          "bold italic forecolor | alignleft aligncenter " +
+          "alignright alignjustify | bullist numlist outdent indent | " +
+          "removeformat | help",
+        content_style:
+          "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
+      }}
+      value={value}
+      onEditorChange={onChange}
+    />
   );
 };
 
-export default JoditEditorComponent;
+export default RichTextEditor;

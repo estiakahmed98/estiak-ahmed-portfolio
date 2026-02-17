@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
-import { Prisma } from "@/generated/prisma/client";
+import { PrismaClient } from "@prisma/client";
 
 function parseDate(v: string | null, fallback: Date) {
   if (!v) return fallback;

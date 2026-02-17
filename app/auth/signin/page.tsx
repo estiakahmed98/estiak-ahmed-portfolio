@@ -1,11 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { signIn, useSession } from "next-auth/react";
 
-/* ---------------- Login Page ---------------- */
-export default function Signin() {
+function SigninContent() {
   const [form, setForm] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -101,5 +100,30 @@ export default function Signin() {
         </div>
       </main>
     </div>
+  );
+}
+
+/* ---------------- Login Page ---------------- */
+export default function Signin() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen flex flex-col bg-[#F3F4F2]">
+        <main className="flex-1 flex items-center justify-center mt-30 mb-30 px-4">
+          <div className="w-full max-w-md bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
+            <div className="animate-pulse">
+              <div className="h-8 bg-gray-200 rounded mb-4"></div>
+              <div className="h-4 bg-gray-200 rounded w-3/4 mx-auto mb-6"></div>
+              <div className="space-y-4">
+                <div className="h-12 bg-gray-200 rounded"></div>
+                <div className="h-12 bg-gray-200 rounded"></div>
+                <div className="h-12 bg-gray-200 rounded"></div>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    }>
+      <SigninContent />
+    </Suspense>
   );
 }

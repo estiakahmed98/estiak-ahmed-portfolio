@@ -7,9 +7,7 @@ try {
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
+  distDir: process.env.NEXT_DIST_DIR || ".next",
   typescript: {
     ignoreBuildErrors: true,
   },
@@ -24,6 +22,15 @@ const nextConfig = {
     webpackBuildWorker: true,
     parallelServerBuildTraces: true,
     parallelServerCompiles: true,
+  },
+  async rewrites() {
+    return [
+      // Handle authentication and authorization logic
+      {
+        source: '/((?!_next/static|_next/image|favicon.ico|api/auth|static).*)',
+        destination: '/api/proxy',
+      },
+    ];
   },
 };
 
