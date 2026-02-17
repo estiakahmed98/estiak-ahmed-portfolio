@@ -55,12 +55,12 @@ export async function PATCH(request: NextRequest) {
 async function handleRequest(request: NextRequest) {
   const { pathname, search } = request.nextUrl;
 
-  // Static + public shortcuts
-  if (isPublic(pathname)) return NextResponse.next();
+  // Static + public shortcuts - allow these requests to proceed
+  if (isPublic(pathname)) return new NextResponse(null, { status: 200 });
   if (pathname.startsWith("/api/") && !pathname.startsWith("/api/auth/")) {
-    return NextResponse.next();
+    return new NextResponse(null, { status: 200 });
   }
-  if (STATIC_FILE_REGEX.test(pathname)) return NextResponse.next();
+  if (STATIC_FILE_REGEX.test(pathname)) return new NextResponse(null, { status: 200 });
 
   const token = await getToken({
     req: request,
@@ -95,5 +95,5 @@ async function handleRequest(request: NextRequest) {
     return NextResponse.redirect(new URL(destination, request.url));
   }
 
-  return NextResponse.next();
+  return new NextResponse(null, { status: 200 });
 }
