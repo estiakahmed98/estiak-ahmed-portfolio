@@ -23,6 +23,29 @@ interface Project {
 // Sample projects data - moved outside component to prevent recreation
 const projects: Project[] = [
   {
+    title: "Adon ERP — ERP Automation",
+    description:
+      "Enterprise Resource Planning platform designed to streamline and automate core business operations through integrated modules and centralized management.",
+    longDescription:
+      "A comprehensive ERP solution featuring Accounting, Inventory, CRM, HR & Payroll, Manufacturing, Trade Finance, Procurement, Project Management, and Employee Portal modules. The platform enables end-to-end business process automation, workflow management, reporting, and role-based access control for improved operational efficiency.",
+    technologies: [
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "ShadCn UI",
+      "Prisma",
+      "PostgreSQL",
+      "Better Auth",
+      "React Hook Form",
+      "Chart.js",
+      "Recharts",
+      "REST API",
+      "Role-Based Access Control (RBAC)",
+    ],
+    image: "/assets/adon-erp.png",
+    link: "https://adonerp.com/",
+  },
+  {
     title: "Net Reputation Task Management System",
     description:
       "Multi-role Next.js platform for client reputation operations with task automation, QC workflows, and real-time collaboration.",
