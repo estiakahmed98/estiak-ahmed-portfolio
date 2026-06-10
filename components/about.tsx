@@ -14,6 +14,7 @@ export default function About() {
     { id: 1, img: "/assets/estiak.jpg" },
     { id: 2, img: "/assets/estiak2.jpg" },
     { id: 3, img: "/assets/estiak3.jpg" },
+    { id: 4, img: "/assets/estiak4.jpeg" },
   ];
 
   return (
